@@ -49,18 +49,28 @@ int sum_elements_of_columns_with_extreme_value(int matrix[DEFAUL_SIZE][DEFAUL_SI
 	int max = find_max(matrix, n, m);
 	int min = find_min(matrix, n, m);
 	int sum = 0;
-	int current_sum = 0;
 
-	for (int i = 0; i < n; i++)
+	bool is_extreme_col[DEFAUL_SIZE] = { false };
+
+	for (int  j = 0; j < m; j++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int i = 0; i < n; i++)
 		{
-			current_sum += matrix[i][j];
-			if (matrix[i][j] == max
-				|| matrix[i][j] == min) {
-				sum += current_sum;
+			if (matrix[i][j] == min
+				|| matrix[i][j] == max) {
+				is_extreme_col[j] = true;
+				break;
 			}
-			
+		}
+	}
+
+	for (int j = 0; j < m; j++)
+	{
+		if (is_extreme_col[j]) {
+			for (int i = 0; i < n; i++)
+			{
+				sum += matrix[i][j];
+			}
 		}
 	}
 
