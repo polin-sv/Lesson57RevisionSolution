@@ -5,3 +5,33 @@
 // Необходимо разработать функцию (или программу), которая находит
 // количество строк, в которых положительных элементов больше 
 // чем всех остальных (отрицательных и нулевых).
+
+#include "logic.h"
+
+int count_rows_with_more_positive_values(int matrix[DEFAULT_SIZE][DEFAULT_SIZE], int n, int m) {
+	if (n <= 0 || m <= 0) {
+		return -1;
+	}
+
+	int positive = 0;
+	//int negative = 0;
+	int count = 0;
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (matrix[i][j] > 0) {
+				positive++;
+			}
+			/*else {
+				negative++;
+			}*/
+		}
+		if (positive > n - positive) {
+			count++;
+		}
+	}
+
+	return count;
+}
